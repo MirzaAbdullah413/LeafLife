@@ -12,7 +12,7 @@ Upload a photo of a plant leaf and LeafLife classifies the disease using a custo
 
 ## 🔗 Live Demo
 
-**[Try LeafLife on Streamlit](https://YOUR-APP-NAME.streamlit.app)**
+**[Try LeafLife on Streamlit](https://leaflife.streamlit.app)**
 
 > Free hosting puts apps to sleep when idle. If you see a "wake this app up" button, click it and wait a moment.
 
@@ -22,7 +22,7 @@ Upload a photo of a plant leaf and LeafLife classifies the disease using a custo
 
 | Upload | Prediction + Grad-CAM |
 |---|---|
-| ![Upload screen](screenshots/upload.png) | ![Result screen](screenshots/result.png) |
+| ![Upload screen](screenshots/upload_screen.png) | ![Result screen](screenshots/result.png) |
 
 <!-- Add a short demo GIF or video link here -->
 
@@ -237,9 +237,5 @@ curl -X POST "http://localhost:8000/predict" -F "file=@leaf.jpg"
 
 **Abdullah Yaqoob**
 
-- GitHub: [@YOUR-USERNAME](https://github.com/YOUR-USERNAME)
-- LinkedIn: _add your link_
-
-## 📄 License
-
-_Add a license (for example MIT) or remove this section._
+- GitHub: [@MirzaAbdullah413](https://github.com/MirzaAbdullah413)
+- LinkedIn: www.linkedin.com/in/muhammad-abdullah-0073aa336
