@@ -72,7 +72,6 @@ Input size: 224×224×3. Grad-CAM targets the convolutional layer in block 5.
 | Image processing | Pillow, OpenCV (headless), NumPy |
 | Backend API | FastAPI, Uvicorn |
 | Web app | Streamlit |
-| Frontend | React (Vite) |
 | Hosting | Streamlit Community Cloud, Vercel (frontend) |
 
 ## 📁 Project Structure
@@ -87,7 +86,6 @@ LeafLife/
 ├── Predict_Image.py         # CNN definition, model loading, Grad-CAM
 ├── requirements.txt
 ├── leaf_disease_model.pth   # Trained model checkpoint
-└── frontend/                # React (Vite) frontend
 ```
 
 > Adjust the tree above if your files live in different folders.
@@ -97,12 +95,11 @@ LeafLife/
 ### Prerequisites
 
 - Python 3.10 to 3.14
-- Node.js 18+ (only for the React frontend)
 
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/LeafLife.git
+git clone https://github.com/MirzaAbdullah413/LeafLife.git
 cd LeafLife
 
 python -m venv venv
