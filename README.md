@@ -8,15 +8,12 @@ Upload a photo of a plant leaf and LeafLife classifies the disease using a custo
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.13-EE4C2C?logo=pytorch&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-backend-009688?logo=fastapi&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-app-FF4B4B?logo=streamlit&logoColor=white)
-![React](https://img.shields.io/badge/React-Vite-61DAFB?logo=react&logoColor=black)
 
 ## 🔗 Live Demo
 
 **[Try LeafLife on Streamlit](https://leaflife.streamlit.app)**
 
 > Free hosting puts apps to sleep when idle. If you see a "wake this app up" button, click it and wait a moment.
-
-<!-- Replace the link above with your real Streamlit URL, then add screenshots/GIF below -->
 
 ## 📸 Screenshots
 
@@ -30,10 +27,10 @@ Upload a photo of a plant leaf and LeafLife classifies the disease using a custo
 
 - **Disease classification** from a single leaf photo using a custom 5-block CNN
 - **Explainability with Grad-CAM**: a heatmap overlay shows what the model focused on
-- **Two interfaces**: a Streamlit app for quick use, and a full-stack version (React + FastAPI)
+- **Streamlit web app** for quick, interactive use
+- **REST API** built with FastAPI for programmatic access
 - **Input validation**: JPG/PNG only, 5 MB size limit, and protection against oversized (decompression-bomb) images
 - **CPU-friendly**: runs on a free CPU instance, with a single-thread setup and a lock around Grad-CAM for safe concurrent use
-- **Configurable CORS** through an environment variable
 
 ## 🧠 How It Works
 
@@ -70,9 +67,9 @@ Input size: 224×224×3. Grad-CAM targets the convolutional layer in block 5.
 |---|---|
 | Model | PyTorch, torchvision |
 | Image processing | Pillow, OpenCV (headless), NumPy |
-| Backend API | FastAPI, Uvicorn |
 | Web app | Streamlit |
-| Hosting | Streamlit Community Cloud, Vercel (frontend) |
+| REST API | FastAPI, Uvicorn |
+| Hosting | Streamlit Community Cloud |
 
 ## 📁 Project Structure
 
@@ -123,7 +120,7 @@ streamlit run app.py
 
 Open `http://localhost:8501`.
 
-### 2b. Run the FastAPI backend
+### 2b. Run the FastAPI backend (optional)
 
 ```bash
 uvicorn main:app --reload --port 8000
@@ -132,33 +129,16 @@ uvicorn main:app --reload --port 8000
 - Health check: `http://localhost:8000/`
 - Interactive docs: `http://localhost:8000/docs`
 
-Allow your frontend origin through CORS (defaults to `http://localhost:5173`):
+To allow a web client from another origin to call the API, set the allowed origins (defaults to `http://localhost:5173`):
 
 ```bash
 # macOS / Linux
-export ALLOWED_ORIGINS="http://localhost:5173,https://your-site.vercel.app"
+export ALLOWED_ORIGINS="http://localhost:5173"
 # Windows PowerShell
-$env:ALLOWED_ORIGINS="http://localhost:5173,https://your-site.vercel.app"
+$env:ALLOWED_ORIGINS="http://localhost:5173"
 ```
 
-### 3. Run the React frontend
-
-```bash
-cd frontend
-npm install
-```
-
-Create `frontend/.env.local`:
-
-```
-VITE_API_URL=http://localhost:8000
-```
-
-Then:
-
-```bash
-npm run dev
-```
+Use commas to allow several origins.
 
 ## 📡 API Reference
 
@@ -205,17 +185,20 @@ curl -X POST "http://localhost:8000/predict" -F "file=@leaf.jpg"
 
 ## ☁️ Deployment
 
-### Streamlit Community Cloud (recommended)
+### Streamlit Community Cloud
 
 1. Push the repo to GitHub (public), including `leaf_disease_model.pth`.
 2. Go to [share.streamlit.io](https://share.streamlit.io) and sign in with GitHub.
 3. Click **Create app**, choose the repo and branch, and set the main file to `app.py`.
 4. In **Advanced settings**, pick Python 3.12, then deploy.
 
-### Full-stack (optional)
+### FastAPI (optional)
 
-- **Frontend:** deploy the `frontend` folder on [Vercel](https://vercel.com) and set `VITE_API_URL` to your backend URL.
-- **Backend:** run the FastAPI app on any host that supports Python and has enough memory for PyTorch. Set `ALLOWED_ORIGINS` to your frontend URL.
+The REST API can run on any host that supports Python and has enough memory for PyTorch. Use this start command and set `ALLOWED_ORIGINS` if a web client will call it:
+
+```bash
+uvicorn main:app --host 0.0.0.0 --port $PORT
+```
 
 ## ⚠️ Limitations
 
@@ -235,4 +218,4 @@ curl -X POST "http://localhost:8000/predict" -F "file=@leaf.jpg"
 **Abdullah Yaqoob**
 
 - GitHub: [@MirzaAbdullah413](https://github.com/MirzaAbdullah413)
-- LinkedIn: www.linkedin.com/in/muhammad-abdullah-0073aa336
+- LinkedIn: [Muhammad Abdullah](https://www.linkedin.com/in/muhammad-abdullah-0073aa336)
